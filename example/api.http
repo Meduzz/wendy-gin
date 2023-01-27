@@ -1,0 +1,97 @@
+### Add service to registry
+POST /api
+Host: localhost:8080
+
+{
+    "module":"service",
+    "method":"add",
+    "body": {
+        "type":"application/json",
+        "data":{
+            "name":"service-discovery",
+            "tags":["awesome"],
+            "host":"127.0.0.2",
+            "port":8080
+        }
+    }
+}
+
+### list services in the registry
+POST /api
+Host: localhost:8080
+
+{
+    "module":"service",
+    "method":"list",
+    "body": {
+        "type":"application/json",
+        "data":"service-discovery"
+    }
+}
+
+### find a candidate among the services in the registry
+POST /api
+Host: localhost:8080
+
+{
+    "module":"service",
+    "method":"find",
+    "body": {
+        "type":"application/json",
+        "data":"service-discovery"
+    }
+}
+
+### remove a service from the registry
+POST /api
+Host: localhost:8080
+
+{
+    "module":"service",
+    "method":"remove",
+    "body": {
+        "type":"application/json",
+        "data":{
+            "name":"service-discovery",
+            "host":"127.0.0.2",
+            "port":8080
+        }
+    }
+}
+
+### add a service to the registry (pretty api edition)
+POST /api/add
+Host: localhost:8080
+Content-Type: application/json
+
+{
+    "name":"service-discovery",
+    "tags":["awesome"],
+    "host":"127.0.0.2",
+    "port":8080
+}
+
+### list services in the registry (pretty api edition)
+POST /api/list
+Host: localhost:8080
+Content-Type: application/json
+
+"service-discovery"
+
+### find candidates in the registry (pretty api edition)
+POST /api/find
+Host: localhost:8080
+Content-Type: application/json
+
+"service-discovery"
+
+### remove a service from the registry (pretty api edition)
+POST /api/remove
+Host: localhost:8080
+Content-Type: application/json
+
+{
+    "name":"service-discovery",
+    "host":"127.0.0.2",
+    "port":8080
+}
