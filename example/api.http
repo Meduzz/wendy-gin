@@ -3,6 +3,7 @@ POST /api
 Host: localhost:8080
 
 {
+    "app":"example",
     "module":"service",
     "method":"add",
     "body": {
@@ -21,6 +22,7 @@ POST /api
 Host: localhost:8080
 
 {
+    "app":"example",
     "module":"service",
     "method":"list",
     "body": {
@@ -34,6 +36,7 @@ POST /api
 Host: localhost:8080
 
 {
+    "app":"example",
     "module":"service",
     "method":"find",
     "body": {
@@ -47,6 +50,7 @@ POST /api
 Host: localhost:8080
 
 {
+    "app":"example",
     "module":"service",
     "method":"remove",
     "body": {
