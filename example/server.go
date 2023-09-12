@@ -11,7 +11,7 @@ func main() {
 	srv := gin.Default()
 
 	// serve a local module
-	logic := wendy.NewLocal(service.ServiceModule())
+	logic := wendy.NewLocal("example", service.ServiceModule())
 
 	// add static paths and what else is needed for the app
 
@@ -25,10 +25,10 @@ func main() {
 	// srv.POST("/api/find", wendygin.WendyMethod(service.ServiceModule().Method("find")))
 
 	// or bind pretty paths to the function in a module
-	srv.POST("/api/add", wendygin.WendyModuleOnlyBody("service", "add", logic))
-	srv.POST("/api/remove", wendygin.WendyModuleOnlyBody("service", "remove", logic))
-	srv.POST("/api/list", wendygin.WendyModuleOnlyBody("service", "list", logic))
-	srv.POST("/api/find", wendygin.WendyModuleOnlyBody("service", "find", logic))
+	srv.POST("/api/add", wendygin.WendyModuleOnlyBody("example", "service", "add", logic))
+	srv.POST("/api/remove", wendygin.WendyModuleOnlyBody("example", "service", "remove", logic))
+	srv.POST("/api/list", wendygin.WendyModuleOnlyBody("example", "service", "list", logic))
+	srv.POST("/api/find", wendygin.WendyModuleOnlyBody("example", "service", "find", logic))
 
 	srv.Run(":8080")
 }

@@ -52,10 +52,11 @@ func WendyModule(logic wendy.Wendy, headers ...string) func(*gin.Context) {
 // new *wendy.Request, setting provided module & method and adds any headers present in both headers param and
 // ctx.Header() into the *wendy.Request before submitting it to logic.Handle()
 // and then writing the *wendy.Response back to the *gin.Context.
-func WendyModuleOnlyBody(module, method string, logic wendy.Wendy, headers ...string) func(*gin.Context) {
+func WendyModuleOnlyBody(app, module, method string, logic wendy.Wendy, headers ...string) func(*gin.Context) {
 	return func(ctx *gin.Context) {
 		// start by binding request
 		req := &wendy.Request{
+			App:    app,
 			Module: module,
 			Method: method,
 		}
