@@ -9,7 +9,7 @@ import (
 // *wendy.Request and adds any headers present in both headers param and
 // ctx.Header() into the *wendy.Request before submitting it to logic.Handle()
 // and then writing the *wendy.Response back to the *gin.Context.
-func WendyModule(logic wendy.Wendy, headers ...string) func(*gin.Context) {
+func WithWendy(logic wendy.Wendy, headers ...string) func(*gin.Context) {
 	return func(ctx *gin.Context) {
 		// start by binding request
 		req := &wendy.Request{}
@@ -27,7 +27,9 @@ func WendyModule(logic wendy.Wendy, headers ...string) func(*gin.Context) {
 
 		for _, h := range headers {
 			v := ctx.GetHeader(h)
-			req.Headers[h] = v
+			if v != "" {
+				req.Headers[h] = v
+			}
 		}
 
 		// call wendy
@@ -52,7 +54,7 @@ func WendyModule(logic wendy.Wendy, headers ...string) func(*gin.Context) {
 // new *wendy.Request, setting provided module & method and adds any headers present in both headers param and
 // ctx.Header() into the *wendy.Request before submitting it to logic.Handle()
 // and then writing the *wendy.Response back to the *gin.Context.
-func WendyModuleOnlyBody(app, module, method string, logic wendy.Wendy, headers ...string) func(*gin.Context) {
+func WithWendyOnlyBody(app, module, method string, logic wendy.Wendy, headers ...string) func(*gin.Context) {
 	return func(ctx *gin.Context) {
 		// start by binding request
 		req := &wendy.Request{
@@ -80,7 +82,9 @@ func WendyModuleOnlyBody(app, module, method string, logic wendy.Wendy, headers 
 
 		for _, h := range headers {
 			v := ctx.GetHeader(h)
-			req.Headers[h] = v
+			if v != "" {
+				req.Headers[h] = v
+			}
 		}
 
 		// call wendy
